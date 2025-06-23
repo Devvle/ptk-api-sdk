@@ -1,10 +1,5 @@
 /**
- * Copyright (c) Devvle - All Rights Reserved
- *2025
- */
-
-/**
- * Copyright (c) 2025-present Devvle, PromptTK.
+ * Copyright (c) 2025 Devvle - All Rights Reserved
  */
 
 export type PromptTemplate = {
