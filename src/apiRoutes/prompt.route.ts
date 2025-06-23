@@ -20,23 +20,6 @@ export async function requestPrompt(
 	apiKey: string,
 	userId: string
 ): Promise<Response> {
-	if (
-		!promptTemplate ||
-		typeof promptTemplate !== 'object' ||
-		Object.keys(promptTemplate).length === 0
-	) {
-		throw new Error('Invalid or missing promptTemplate parameter.');
-	}
-	if (!apiKey || typeof apiKey !== 'string') {
-		throw new Error('Invalid or missing apiKey parameter.');
-	}
-	if (apiKey.substring(0, 4) !== 'ptk-') {
-		throw new Error('Invalid API key format. It should start with "ptk-".');
-	}
-	if (!userId || typeof userId !== 'string') {
-		throw new Error('Invalid or missing userId parameter.');
-	}
-
 	try {
 		const response = await fetch(`${API_ENDPOINT}/dev/prompt`, {
 			method: 'POST',
