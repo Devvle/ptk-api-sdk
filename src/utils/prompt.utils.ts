@@ -1,4 +1,6 @@
-/* Copyright (c) 2025 - Devvle - PromptTK */
+/**
+ * Copyright (c) 2025-present Devvle, PromptTK.
+ */
 
 import type { PromptTemplate } from '../types/prompt.types';
 

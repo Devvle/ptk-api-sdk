@@ -1,5 +1,8 @@
-/* Copyright (c) 2025 - Devvle - PromptTK */
+/**
+ * Copyright (c) 2025-present Devvle, PromptTK.
+ */
 
+import { API_ENDPOINT } from '../class/constants';
 import type { PromptTemplate } from '../types/prompt.types';
 
 /**
@@ -35,7 +38,7 @@ export async function requestPrompt(
 	}
 
 	try {
-		const response = await fetch('https://api.prompttk.com/dev/prompt', {
+		const response = await fetch(`${API_ENDPOINT}/dev/prompt`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
