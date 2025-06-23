@@ -59,6 +59,6 @@ export class PromptTK {
 		if (!response.ok) {
 			throw new Error(`API key validation failed: ${response.statusText}`);
 		}
-		return response;
+		return await response.json();
 	}
 }
