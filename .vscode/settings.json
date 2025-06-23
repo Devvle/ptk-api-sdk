@@ -1,16 +1,16 @@
 {
 	"workbench.colorCustomizations": {
-		"activityBar.background": "#4e1e85",
-		"activityBarBadge.background": "#c938b6",
+		"activityBar.background": "#2c1e85",
+		"activityBarBadge.background": "#8a38c9",
 		"activityBarBadge.foreground": "#ffffff",
-		"titleBar.activeBackground": "#8d4fd5",
+		"titleBar.activeBackground": "#534fd5",
 		"titleBar.activeForeground": "#ffffff",
-		"titleBar.inactiveBackground": "#5A2496",
+		"titleBar.inactiveBackground": "#262496",
 		"titleBar.inactiveForeground": "#ffffff",
-		"statusBar.background": "#3e188b",
+		"statusBar.background": "#181c8b",
 		"statusBar.foreground": "#ffffff",
-		"panel.border": "#8F4FE73e",
-		"scrollbarSlider.background": "#8f4fe735"
+		"panel.border": "#524fe73e",
+		"scrollbarSlider.background": "#5c4fe735"
 	},
 	"editor.codeActionsOnSave": {
 		"source.organizeImports": "explicit",
