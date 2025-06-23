@@ -2,6 +2,7 @@
  * Copyright (c) 2025 Devvle - All Rights Reserved
  */
 
+import { validateApiKey } from '../apiRoutes/keys.route';
 import { requestPrompt } from '../apiRoutes/prompt.route';
 import { PromptTemplate } from '../types/prompt.types';
 import { generatePromptTemplate } from '../utils/prompt.utils';
@@ -24,5 +25,13 @@ export class PromptTK {
 		const promptTemplate: PromptTemplate = generatePromptTemplate(options);
 		const response = await requestPrompt(promptTemplate, this.apiKey, this.userId);
 		return await response.json();
+	}
+
+	async validateApiKey(): Promise<Response> {
+		const response = await validateApiKey(this.apiKey, this.userId);
+		if (!response.ok) {
+			throw new Error(`API key validation failed: ${response.statusText}`);
+		}
+		return response;
 	}
 }
