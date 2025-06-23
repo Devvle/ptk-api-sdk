@@ -2,7 +2,7 @@ import parser from '@typescript-eslint/parser';
 
 export default [
 	{
-		name: 'promptTKEslintConfig',
+		name: 'ptk-eslint-config',
 		languageOptions: {
 			parser,
 			parserOptions: {
@@ -16,10 +16,6 @@ export default [
 		plugins: {
 			'@typescript-eslint': parser
 		},
-		files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}'],
-		rules: {
-			...pluginNext.configs.recommended.rules,
-			...pluginNext.configs['core-web-vitals'].rules
-		}
+		files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}']
 	}
 ];
