@@ -1,6 +1,11 @@
 ## Changelog
 
-### 0.0.1
+### 0.1.1
+
+- Added README documentation for the SDK.
+- Added PromptTK class with basic functionality.
+
+### 0.1.0
 
 - Initial release of the PromptTK API SDK.
 - Basic functionality for making requests to the API and handling responses.
