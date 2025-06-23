@@ -1,5 +1,6 @@
-/* Copyright (c) 2025 - Devvle - PromptTK */
+/**
+ * Copyright (c) 2025 Devvle - All Rights Reserved
+ */
 
-export { requestPrompt } from './apiRoutes/prompt.route';
+export { PromptTK } from './class/promptTK';
 export type { PromptTemplate } from './types/prompt.types';
-export { generatePromptTemplate } from './utils/prompt.utils';
