@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2025-present Devvle, PromptTK.
+ * Copyright (c) 2025 Devvle - All Rights Reserved
  */
 
 import type { PromptTemplate } from '../types/prompt.types';

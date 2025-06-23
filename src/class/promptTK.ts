@@ -1,9 +1,10 @@
 /**
- * Copyright (c) 2025-present Devvle, PromptTK.
+ * Copyright (c) 2025 Devvle - All Rights Reserved
  */
 
 import { requestPrompt } from '../apiRoutes/prompt.route';
 import { PromptTemplate } from '../types/prompt.types';
+import { generatePromptTemplate } from '../utils/prompt.utils';
 
 export interface PromptTKOptions {
 	userId: string;
@@ -20,7 +21,8 @@ export class PromptTK {
 	}
 
 	async generatePrompt(options: { [key: string]: any }): Promise<string> {
-		const response = await requestPrompt(options as PromptTemplate, this.apiKey, this.userId);
+		const promptTemplate: PromptTemplate = generatePromptTemplate(options);
+		const response = await requestPrompt(promptTemplate, this.apiKey, this.userId);
 		return await response.json();
 	}
 }
