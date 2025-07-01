@@ -34,6 +34,8 @@ const promptTK = new PromptTK({
 });
 ```
 
+You can obtain your API key and user id from [the account page, here.](https://www.prompttk.com/account)
+
 ### Example: Generating a Prompt
 
 ```ts
