@@ -2,8 +2,7 @@
  * Copyright (c) 2025 Devvle - All Rights Reserved
  */
 
-import { validateApiKey } from '../apiRoutes/keys.route';
-import { requestPrompt } from '../apiRoutes/prompt.route';
+import * as routes from '../apiRoutes';
 import { PromptTemplate } from '../types/prompt.types';
 import { generatePromptTemplate } from '../utils/prompt.utils';
 
@@ -30,35 +29,37 @@ export class PromptTK {
 		this.userId = options.userId;
 	}
 
-	/**
-	 * Generates a prompt template based on the provided options.
-	 * @param options - An object containing various parameters to generate a prompt template.
-	 * The options must include a `mainPrompt` property, which is a string that serves as the main prompt for the template.
-	 * The options object can include properties like:
-	 * - endUserDescription: Description for the end user.
-	 * - promptSenderDescription: Description for the sender of the prompt.
-	 * - relationship: Relationship context for the prompt.
-	 * - mustHaves: Must-have elements for the prompt.
-	 * @returns {Promise<string>} - A promise that resolves to the generated prompt.
-	 * @throws {Error} If the API request fails or if the API key is invalid.
-	 */
-	async generatePrompt(options: { [key: string]: any }): Promise<string> {
-		const promptTemplate: PromptTemplate = generatePromptTemplate(options);
-		const response = await requestPrompt(promptTemplate, this.apiKey, this.userId);
-		return await response.json();
-	}
-
-	/**
-	 *  Validates the API key by making a request to the PromptTK API.
-	 *  This method checks if the API key is valid and associated with the provided user ID
-	 * @returns {Promise<Response>} - A promise that resolves to the API response.
-	 * @throws {Error} If the API key validation fails.
-	 */
+	/** ---- Api Keys ---- */
 	async validateApiKey(): Promise<Response> {
-		const response = await validateApiKey(this.apiKey, this.userId);
+		const response = await routes.validateApiKey(this.apiKey, this.userId);
 		if (!response.ok) {
 			throw new Error(`API key validation failed: ${response.statusText}`);
 		}
 		return await response.json();
 	}
+
+	/** ---- Prompts ---- */
+
+	async fetchAllPrompts(): Promise<string[]> {
+		const response = await routes.fetchAllPrompts(this.apiKey, this.userId);
+		return await response.json();
+	}
+
+	async generatePrompt(
+		options: { [key: string]: any },
+		promptName?: string,
+		projectId?: string
+	): Promise<string> {
+		const promptTemplate: PromptTemplate = generatePromptTemplate(options);
+		const response = await routes.requestPrompt(
+			{ ...promptTemplate },
+			this.apiKey,
+			this.userId,
+			projectId,
+			promptName
+		);
+		return await response.json();
+	}
+
+	/* ---- Projects ---- */
 }
