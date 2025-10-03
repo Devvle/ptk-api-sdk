@@ -18,17 +18,19 @@ import type { PromptTemplate } from '../types/prompt.types';
 export async function requestPrompt(
 	promptTemplate: PromptTemplate,
 	apiKey: string,
-	userId: string
+	userId: string,
+	projectId?: string,
+	promptName?: string
 ): Promise<Response> {
 	try {
-		const response = await fetch(`${API_ENDPOINT}/dev/prompt`, {
+		const response = await fetch(`${API_ENDPOINT}/v1/prompts`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
 				Authorization: `Bearer ${apiKey}`,
 				'x-user-id': userId
 			},
-			body: JSON.stringify({ prompt: promptTemplate })
+			body: JSON.stringify({ input: promptTemplate, projectId, promptName })
 		});
 
 		if (!response.ok) {
@@ -39,5 +41,27 @@ export async function requestPrompt(
 		return response;
 	} catch (error: any) {
 		throw new Error(`Failed to send prompt template: ${error.message}`);
+	}
+}
+
+export async function fetchAllPrompts(apiKey: string, userId: string): Promise<Response> {
+	try {
+		const response = await fetch(`${API_ENDPOINT}/v1/prompts`, {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: `Bearer ${apiKey}`,
+				'x-user-id': userId
+			}
+		});
+
+		if (!response.ok) {
+			const errorText = await response.text();
+			throw new Error(`API request failed with status ${response.status}: ${errorText}`);
+		}
+
+		return response;
+	} catch (error: any) {
+		throw new Error(`Failed to fetch prompts: ${error.message}`);
 	}
 }
