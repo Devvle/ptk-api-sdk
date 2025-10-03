@@ -17,5 +17,4 @@ export type PromptTemplate = {
 	responseFormat?: string;
 	promptGoal?: string;
 	hallucinationControl?: string;
-	projectId?: string;
 };
