@@ -45,6 +45,16 @@ export class PromptTK {
 		return await response.json();
 	}
 
+	async fetchPromptById(promptId: string): Promise<string> {
+		const response = await routes.fetchPromptById(this.apiKey, this.userId, promptId);
+		return await response.json();
+	}
+
+	async updatePrompt(promptId: string, promptText: string): Promise<string> {
+		const response = await routes.updatePrompt(this.apiKey, this.userId, promptId, promptText);
+		return await response.json();
+	}
+
 	async generatePrompt(
 		options: { [key: string]: any },
 		promptName?: string,
