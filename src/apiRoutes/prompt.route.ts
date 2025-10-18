@@ -65,3 +65,57 @@ export async function fetchAllPrompts(apiKey: string, userId: string): Promise<R
 		throw new Error(`Failed to fetch prompts: ${error.message}`);
 	}
 }
+
+export async function fetchPromptById(
+	apiKey: string,
+	userId: string,
+	promptId: string
+): Promise<Response> {
+	try {
+		const response = await fetch(`${API_ENDPOINT}/v1/prompts/byid/${promptId}`, {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: `Bearer ${apiKey}`,
+				'x-user-id': userId
+			}
+		});
+
+		if (!response.ok) {
+			const errorText = await response.text();
+			throw new Error(`API request failed with status ${response.status}: ${errorText}`);
+		}
+
+		return response;
+	} catch (error: any) {
+		throw new Error(`Failed to fetch prompt: ${error.message}`);
+	}
+}
+
+export async function updatePrompt(
+	apiKey: string,
+	userId: string,
+	promptId: string,
+	promptText: string
+): Promise<Response> {
+	try {
+		const response = await fetch(`${API_ENDPOINT}/v1/prompts/update/${promptId}`, {
+			method: 'PUT',
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: `Bearer ${apiKey}`,
+				'x-user-id': userId
+			},
+			body: JSON.stringify({ promptText })
+		});
+
+		if (!response.ok) {
+			const errorText = await response.text();
+			throw new Error(`API request failed with status ${response.status}: ${errorText}`);
+		}
+
+		return response;
+	} catch (error: any) {
+		throw new Error(`Failed to update prompt: ${error.message}`);
+	}
+}
