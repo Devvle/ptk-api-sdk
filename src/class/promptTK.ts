@@ -60,6 +60,30 @@ export class PromptTK {
 		return await response.json();
 	}
 
+	async createPromptVersion(
+		promptId: string,
+		input: any,
+		source?: string,
+		label?: string,
+		parentVersionId?: string
+	): Promise<string> {
+		const response = await routes.createPromptVersion(
+			this.apiKey,
+			this.userId,
+			promptId,
+			input,
+			source,
+			label,
+			parentVersionId
+		);
+		return await response.json();
+	}
+
+	async listPromptVersions(promptId: string): Promise<string> {
+		const response = await routes.listPromptVersions(this.apiKey, this.userId, promptId);
+		return await response.json();
+	}
+
 	async generatePrompt(
 		options: { [key: string]: any },
 		promptName?: string,
