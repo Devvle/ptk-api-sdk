@@ -1,21 +1,29 @@
 import { validateApiKey } from './keys.route';
 import {
-	createPromptVersion,
 	deletePrompt,
 	fetchAllPrompts,
 	fetchPromptById,
-	listPromptVersions,
 	requestPrompt,
 	updatePrompt
 } from './prompt.route';
+import {
+	activatePromptVersion,
+	createPromptVersion,
+	deletePromptVersion,
+	listPromptVersions,
+	updatePromptVersion
+} from './version.route';
 
 export {
+	activatePromptVersion,
 	createPromptVersion,
 	deletePrompt,
+	deletePromptVersion,
 	fetchAllPrompts,
 	fetchPromptById,
 	listPromptVersions,
 	requestPrompt,
 	updatePrompt,
+	updatePromptVersion,
 	validateApiKey
 };
