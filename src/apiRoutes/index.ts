@@ -1,4 +1,10 @@
 import { validateApiKey } from './keys.route';
-import { fetchAllPrompts, fetchPromptById, requestPrompt, updatePrompt } from './prompt.route';
+import {
+	deletePrompt,
+	fetchAllPrompts,
+	fetchPromptById,
+	requestPrompt,
+	updatePrompt
+} from './prompt.route';
 
-export { fetchAllPrompts, fetchPromptById, requestPrompt, updatePrompt, validateApiKey };
+export { deletePrompt, fetchAllPrompts, fetchPromptById, requestPrompt, updatePrompt, validateApiKey };

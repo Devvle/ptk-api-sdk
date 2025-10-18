@@ -55,6 +55,11 @@ export class PromptTK {
 		return await response.json();
 	}
 
+	async deletePrompt(promptId: string): Promise<string> {
+		const response = await routes.deletePrompt(this.apiKey, this.userId, promptId);
+		return await response.json();
+	}
+
 	async generatePrompt(
 		options: { [key: string]: any },
 		promptName?: string,

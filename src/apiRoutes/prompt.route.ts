@@ -119,3 +119,30 @@ export async function updatePrompt(
 		throw new Error(`Failed to update prompt: ${error.message}`);
 	}
 }
+
+export async function deletePrompt(
+	apiKey: string,
+	userId: string,
+	promptId: string
+): Promise<Response> {
+	try {
+		const response = await fetch(`${API_ENDPOINT}/v1/prompts/delete/${promptId}`, {
+			method: 'DELETE',
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: `Bearer ${apiKey}`,
+				'x-user-id': userId
+			},
+			body: JSON.stringify({ promptId })
+		});
+
+		if (!response.ok) {
+			const errorText = await response.text();
+			throw new Error(`API request failed with status ${response.status}: ${errorText}`);
+		}
+
+		return response;
+	} catch (error: any) {
+		throw new Error(`Failed to delete prompt: ${error.message}`);
+	}
+}
