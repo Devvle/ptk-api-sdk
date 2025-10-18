@@ -146,3 +146,65 @@ export async function deletePrompt(
 		throw new Error(`Failed to delete prompt: ${error.message}`);
 	}
 }
+
+export async function createPromptVersion(
+	apiKey: string,
+	userId: string,
+	promptId: string,
+	input: any,
+	source?: string,
+	label?: string,
+	parentVersionId?: string
+): Promise<Response> {
+	try {
+		const response = await fetch(`${API_ENDPOINT}/v1/prompts/${promptId}/version/new`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: `Bearer ${apiKey}`,
+				'x-user-id': userId
+			},
+			body: JSON.stringify({
+				input,
+				source,
+				label,
+				parentVersionId
+			})
+		});
+
+		if (!response.ok) {
+			const errorText = await response.text();
+			throw new Error(`API request failed with status ${response.status}: ${errorText}`);
+		}
+
+		return response;
+	} catch (error: any) {
+		throw new Error(`Failed to create prompt version: ${error.message}`);
+	}
+}
+
+export async function listPromptVersions(
+	apiKey: string,
+	userId: string,
+	promptId: string
+): Promise<Response> {
+	try {
+		const response = await fetch(`${API_ENDPOINT}/v1/prompts/${promptId}/version/list`, {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: `Bearer ${apiKey}`,
+				'x-user-id': userId
+			}
+		});
+
+		if (!response.ok) {
+			const errorText = await response.text();
+			throw new Error(`API request failed with status ${response.status}: ${errorText}`);
+		}
+
+		return response;
+	} catch (error: any) {
+		throw new Error(`Failed to list prompt versions: ${error.message}`);
+	}
+}
