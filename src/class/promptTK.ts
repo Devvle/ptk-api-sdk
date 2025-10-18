@@ -60,6 +60,8 @@ export class PromptTK {
 		return await response.json();
 	}
 
+	/** ---- Prompt Versions ---- */
+
 	async createPromptVersion(
 		promptId: string,
 		input: any,
@@ -81,6 +83,41 @@ export class PromptTK {
 
 	async listPromptVersions(promptId: string): Promise<string> {
 		const response = await routes.listPromptVersions(this.apiKey, this.userId, promptId);
+		return await response.json();
+	}
+
+	async activatePromptVersion(promptId: string, versionId: string): Promise<string> {
+		const response = await routes.activatePromptVersion(
+			this.apiKey,
+			this.userId,
+			promptId,
+			versionId
+		);
+		return await response.json();
+	}
+
+	async updatePromptVersion(
+		promptId: string,
+		versionId: string,
+		updateData: { output?: string; label?: string }
+	): Promise<string> {
+		const response = await routes.updatePromptVersion(
+			this.apiKey,
+			this.userId,
+			promptId,
+			versionId,
+			updateData
+		);
+		return await response.json();
+	}
+
+	async deletePromptVersion(promptId: string, versionId: string): Promise<string> {
+		const response = await routes.deletePromptVersion(
+			this.apiKey,
+			this.userId,
+			promptId,
+			versionId
+		);
 		return await response.json();
 	}
 
