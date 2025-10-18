@@ -19,7 +19,6 @@ export function generatePromptTemplate({
 	mainPrompt,
 	mustHaves,
 	outputType,
-	projectId,
 	promptGoal,
 	promptSenderDescription,
 	relationship,
@@ -52,7 +51,6 @@ export function generatePromptTemplate({
 	responseFormat = checkString(responseFormat);
 	promptGoal = checkString(promptGoal);
 	hallucinationControl = checkString(hallucinationControl);
-	projectId = checkString(projectId);
 
 	return {
 		endUserDescription,
@@ -68,8 +66,7 @@ export function generatePromptTemplate({
 		outputType,
 		responseFormat,
 		promptGoal,
-		hallucinationControl,
-		projectId
+		hallucinationControl
 	};
 }
 
