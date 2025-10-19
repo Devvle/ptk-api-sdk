@@ -121,6 +121,71 @@ export class PromptTK {
 		return await response.json();
 	}
 
+	/** ---- Usage & Analytics ---- */
+
+	async getUsageSummary(startDate?: Date | string | number): Promise<string> {
+		const response = await routes.getUsageSummary(this.apiKey, this.userId, startDate);
+		return await response.json();
+	}
+
+	async get90DaysUsage(): Promise<string> {
+		const response = await routes.get90DaysUsage(this.apiKey, this.userId);
+		return await response.json();
+	}
+
+	/** ---- Projects ---- */
+
+	async getAllProjects(): Promise<string> {
+		const response = await routes.getAllProjects(this.apiKey, this.userId);
+		return await response.json();
+	}
+
+	async getProjectsWithLimit(limit: number): Promise<string> {
+		const response = await routes.getProjectsWithLimit(this.apiKey, this.userId, limit);
+		return await response.json();
+	}
+
+	async getRecentProjects(limit: number): Promise<string> {
+		const response = await routes.getRecentProjects(this.apiKey, this.userId, limit);
+		return await response.json();
+	}
+
+	async createProject(name: string, description?: string): Promise<string> {
+		const response = await routes.createProject(this.apiKey, this.userId, {
+			name,
+			description
+		});
+		return await response.json();
+	}
+
+	async getProjectById(projectId: string): Promise<string> {
+		const response = await routes.getProjectById(this.apiKey, this.userId, projectId);
+		return await response.json();
+	}
+
+	async updateProject(
+		projectId: string,
+		updateData: { name?: string; description?: string }
+	): Promise<string> {
+		const response = await routes.updateProject(
+			this.apiKey,
+			this.userId,
+			projectId,
+			updateData
+		);
+		return await response.json();
+	}
+
+	async deleteProject(projectId: string, transferToProjectId?: string): Promise<string> {
+		const response = await routes.deleteProject(
+			this.apiKey,
+			this.userId,
+			projectId,
+			transferToProjectId
+		);
+		return await response.json();
+	}
+
 	async generatePrompt(
 		options: { [key: string]: any },
 		promptName?: string,
